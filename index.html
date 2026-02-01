@@ -1,65 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Will you be my Valentine? 💘</title>
-    <style>
-        body {
-            height: 100vh;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            overflow: hidden;
-        }
+<meta charset="UTF-8">
+<title>Will you be my Valentine? 💘</title>
+<style>
+    body {
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        font-family: 'Comic Sans MS', cursive, sans-serif;
+        overflow: hidden;
+        flex-direction: column;
+    }
 
-        .container {
-            text-align: center;
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            position: relative;
-        }
+    /* GIF a tetején */
+    #valentineGif {
+        max-width: 300px;
+        margin-bottom: 20px;
+        border-radius: 20px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
 
-        h1 {
-            color: #ff4d6d;
-            margin-bottom: 30px;
-        }
+    .container {
+        text-align: center;
+        background: white;
+        padding: 50px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        position: relative;
+    }
 
-        button {
-            font-size: 18px;
-            padding: 12px 25px;
-            margin: 10px;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+    h1 {
+        color: #ff4d6d;
+        margin-bottom: 40px;
+        font-size: 60px; /* Nagyobb főcím */
+    }
 
-        #yesBtn {
-            background-color: #ff4d6d;
-            color: white;
-        }
+    button {
+        font-size: 26px; /* Nagyobb szöveg */
+        padding: 18px 40px; /* Nagyobb gomb */
+        margin: 10px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
 
-        #yesBtn:hover {
-            transform: scale(1.1);
-        }
+    #yesBtn {
+        background-color: #ff4d6d;
+        color: white;
+    }
 
-        #noBtn {
-            background-color: #ccc;
-            position: absolute;
-        }
+    #yesBtn:hover {
+        transform: scale(1.1);
+    }
 
-        .love {
-            font-size: 28px;
-            color: #ff4d6d;
-        }
-    </style>
+    #noBtn {
+        background-color: #ccc;
+        position: absolute;
+    }
+
+    .love {
+        font-size: 32px;
+        color: #ff4d6d;
+    }
+</style>
 </head>
 <body>
+
+<!-- GIF a tetején -->
+<img id="valentineGif" src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="Valentine Gif">
 
 <div class="container" id="box">
     <h1>Will you be my Valentine? 💘</h1>
