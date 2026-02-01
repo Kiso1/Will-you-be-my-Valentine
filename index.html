@@ -14,9 +14,9 @@
         font-family: 'Comic Sans MS', cursive, sans-serif;
         overflow: hidden;
         flex-direction: column;
+        position: relative;
     }
 
-    /* GIF a tetején */
     #valentineGif {
         max-width: 300px;
         margin-bottom: 20px;
@@ -36,12 +36,12 @@
     h1 {
         color: #ff4d6d;
         margin-bottom: 40px;
-        font-size: 60px; /* Nagyobb főcím */
+        font-size: 60px;
     }
 
     button {
-        font-size: 26px; /* Nagyobb szöveg */
-        padding: 18px 40px; /* Nagyobb gomb */
+        font-size: 26px;
+        padding: 18px 40px;
         margin: 10px;
         border: none;
         border-radius: 30px;
@@ -67,11 +67,23 @@
         font-size: 32px;
         color: #ff4d6d;
     }
+
+    .heart {
+        position: absolute;
+        font-size: 24px;
+        color: red;
+        pointer-events: none;
+        animation: fall 3s linear forwards;
+    }
+
+    @keyframes fall {
+        0% { transform: translateY(0); opacity: 1; }
+        100% { transform: translateY(100vh); opacity: 0; }
+    }
 </style>
 </head>
 <body>
 
-<!-- GIF a tetején -->
 <img id="valentineGif" src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="Valentine Gif">
 
 <div class="container" id="box">
@@ -85,21 +97,41 @@ const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 const box = document.getElementById("box");
 
-// Funkció az elugráshoz
-function moveNoBtn() {
-    const padding = 20; // ne menjen ki az ablakból
+// No gomb ugrálás kattintásra
+function jumpNoBtn() {
+    const padding = 20;
     const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - padding);
     const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - padding);
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
 }
 
-// Egér fölé húzásnál elugrik
-noBtn.addEventListener("mouseenter", moveNoBtn);
+noBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    jumpNoBtn();
+});
+
+// Szívecskék létrehozása
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.innerHTML = "💖";
+    document.body.appendChild(heart);
+
+    // 3 másodperc múlva eltűnik
+    setTimeout(() => {
+        heart.remove();
+    }, 3000);
+}
 
 // Yes gomb kattintás
 yesBtn.addEventListener("click", () => {
     box.innerHTML = "<div class='love'>Yaaay! 💕<br>Happy Valentine’s Day! 💘</div>";
+
+    // Szívecskék folyamatos létrehozása 1 másodpercig
+    let heartsInterval = setInterval(createHeart, 200);
+    setTimeout(() => clearInterval(heartsInterval), 2000);
 });
 </script>
 
