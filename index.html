@@ -47,6 +47,7 @@
         border-radius: 30px;
         cursor: pointer;
         transition: all 0.3s ease;
+        position: relative;
     }
 
     #yesBtn {
@@ -84,7 +85,6 @@
 </head>
 <body>
 
-<!-- GIF a tetején -->
 <img id="valentineGif" src="https://media4.giphy.com/media/fvN5KrNcKKUyX7hNIA/giphy.gif" alt="Valentine Gif">
 
 <div class="container" id="box">
@@ -98,27 +98,31 @@ const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 const box = document.getElementById("box");
 
-// "No" gomb ugrálás kattintáskor
+// "No" gomb ugrálás, mindig a képernyőn belül
 function jumpNoBtn() {
-    const padding = 20;
+    const padding = 20; // hogy ne menjen ki a képernyőről
     const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - padding);
     const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - padding);
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
 }
 
-noBtn.addEventListener("click", (e) => {
-    e.preventDefault();
+// Asztali: egérrel közelítés → ugrik
+noBtn.addEventListener("mouseenter", jumpNoBtn);
+
+// Mobil: érintés kezdete → ugrik
+noBtn.addEventListener("touchstart", (e) => {
+    e.preventDefault(); // hogy ne kattintson
     jumpNoBtn();
-});
+}, { passive: false });
 
 // Szívecskék létrehozása
 function createHeart() {
     const heart = document.createElement("div");
     heart.classList.add("heart");
     heart.style.left = Math.random() * window.innerWidth + "px";
-    heart.style.fontSize = (20 + Math.random() * 30) + "px"; // változó méret
-    heart.style.animationDuration = (2 + Math.random() * 2) + "s"; // változó sebesség
+    heart.style.fontSize = (20 + Math.random() * 30) + "px";
+    heart.style.animationDuration = (2 + Math.random() * 2) + "s";
     heart.innerHTML = "💖";
     document.body.appendChild(heart);
 
