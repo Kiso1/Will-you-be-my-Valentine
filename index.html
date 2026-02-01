@@ -84,7 +84,8 @@
 </head>
 <body>
 
-<img id="valentineGif" src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="Valentine Gif">
+<!-- GIF a tetején, most már működő link -->
+<img id="valentineGif" src="https://media4.giphy.com/media/v1.Y2lkPTZjMDliOTUyaWM5endlYmQ1NDZmeHR2NHJob3U0NmJicGFzNnE3eDNibWo5MmFqciZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/fvN5KrNcKKUyX7hNIA/giphy.gif" alt="Valentine Gif">
 
 <div class="container" id="box">
     <h1>Will you be my Valentine? 💘</h1>
@@ -97,7 +98,7 @@ const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 const box = document.getElementById("box");
 
-// No gomb ugrálás kattintásra
+// No gomb ugrálás kattintáskor
 function jumpNoBtn() {
     const padding = 20;
     const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - padding);
@@ -119,7 +120,6 @@ function createHeart() {
     heart.innerHTML = "💖";
     document.body.appendChild(heart);
 
-    // 3 másodperc múlva eltűnik
     setTimeout(() => {
         heart.remove();
     }, 3000);
@@ -129,7 +129,6 @@ function createHeart() {
 yesBtn.addEventListener("click", () => {
     box.innerHTML = "<div class='love'>Yaaay! 💕<br>Happy Valentine’s Day! 💘</div>";
 
-    // Szívecskék folyamatos létrehozása 1 másodpercig
     let heartsInterval = setInterval(createHeart, 200);
     setTimeout(() => clearInterval(heartsInterval), 2000);
 });
