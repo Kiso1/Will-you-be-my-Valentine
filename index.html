@@ -84,8 +84,8 @@
 </head>
 <body>
 
-<!-- GIF a tetején, most már működő link -->
-<img id="valentineGif" src="https://media4.giphy.com/media/v1.Y2lkPTZjMDliOTUyaWM5endlYmQ1NDZmeHR2NHJob3U0NmJicGFzNnE3eDNibWo5MmFqciZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/fvN5KrNcKKUyX7hNIA/giphy.gif" alt="Valentine Gif">
+<!-- GIF a tetején -->
+<img id="valentineGif" src="https://media4.giphy.com/media/fvN5KrNcKKUyX7hNIA/giphy.gif" alt="Valentine Gif">
 
 <div class="container" id="box">
     <h1>Will you be my Valentine? 💘</h1>
@@ -98,7 +98,7 @@ const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 const box = document.getElementById("box");
 
-// No gomb ugrálás kattintáskor
+// "No" gomb ugrálás kattintáskor
 function jumpNoBtn() {
     const padding = 20;
     const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - padding);
@@ -117,20 +117,22 @@ function createHeart() {
     const heart = document.createElement("div");
     heart.classList.add("heart");
     heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.fontSize = (20 + Math.random() * 30) + "px"; // változó méret
+    heart.style.animationDuration = (2 + Math.random() * 2) + "s"; // változó sebesség
     heart.innerHTML = "💖";
     document.body.appendChild(heart);
 
     setTimeout(() => {
         heart.remove();
-    }, 3000);
+    }, 4000);
 }
 
 // Yes gomb kattintás
 yesBtn.addEventListener("click", () => {
     box.innerHTML = "<div class='love'>Yaaay! 💕<br>Happy Valentine’s Day! 💘</div>";
 
-    let heartsInterval = setInterval(createHeart, 200);
-    setTimeout(() => clearInterval(heartsInterval), 2000);
+    // Folyamatos szívek létrehozása
+    setInterval(createHeart, 200);
 });
 </script>
 
