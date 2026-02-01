@@ -47,21 +47,23 @@
         border-radius: 30px;
         cursor: pointer;
         transition: all 0.3s ease;
-        position: relative;
+        position: absolute;
     }
 
     #yesBtn {
         background-color: #ff4d6d;
         color: white;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 20px;
     }
 
     #yesBtn:hover {
-        transform: scale(1.1);
+        transform: translateX(-50%) scale(1.1);
     }
 
     #noBtn {
         background-color: #ccc;
-        position: absolute;
     }
 
     .love {
@@ -100,9 +102,11 @@ const box = document.getElementById("box");
 
 // "No" gomb ugrálás, mindig a képernyőn belül
 function jumpNoBtn() {
-    const padding = 20; // hogy ne menjen ki a képernyőről
-    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - padding);
-    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - padding);
+    const padding = 10; // távolság a képernyéltől
+    const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+    const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
 }
@@ -112,7 +116,7 @@ noBtn.addEventListener("mouseenter", jumpNoBtn);
 
 // Mobil: érintés kezdete → ugrik
 noBtn.addEventListener("touchstart", (e) => {
-    e.preventDefault(); // hogy ne kattintson
+    e.preventDefault();
     jumpNoBtn();
 }, { passive: false });
 
@@ -138,6 +142,9 @@ yesBtn.addEventListener("click", () => {
     // Folyamatos szívek létrehozása
     setInterval(createHeart, 200);
 });
+
+// Kezdeti helyzet a No gombnak
+jumpNoBtn();
 </script>
 
 </body>
